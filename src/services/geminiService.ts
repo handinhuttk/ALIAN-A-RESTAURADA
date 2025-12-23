@@ -1,6 +1,13 @@
 import { GoogleGenAI } from "@google/genai";
 
-const apiKey = process.env.API_KEY || ''; // Assuming generic environment handling for the demo
+// Declaração para satisfazer o compilador TypeScript caso @types/node falhe ou demore para carregar
+declare const process: {
+  env: {
+    API_KEY: string | undefined;
+  }
+};
+
+const apiKey = process.env.API_KEY || ''; 
 const ai = new GoogleGenAI({ apiKey });
 
 export const getDailyMessage = async (): Promise<string> => {
